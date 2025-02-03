@@ -13,9 +13,13 @@ builder
     {
         var configuration = serviceProvider.GetRequiredService<IConfiguration>();
         var apiKey = configuration["LaunchDarkly:ApiKey"];
-        return new LdClient(apiKey);
+        var config = Configuration.Builder(apiKey)
+            .StartWaitTime(TimeSpan.FromSeconds(0))
+            .Build();
+        return new LdClient(config);
     })
     .AddFeatureManagement();
+builder.Services.AddSingleton<IFeatureDefinitionProvider, LaunchDarklyFeatureDefinitionProvider>();
 
 var app = builder.Build();
 app.RegisterFeatureToggleEndpoints();
