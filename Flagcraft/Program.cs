@@ -1,10 +1,17 @@
+using LaunchDarkly.Sdk.Server;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddSingleton((serviceProvider) =>
+{
+    var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+    var apiKey = configuration["LaunchDarkly:ApiKey"];
+    return  new LdClient(apiKey);
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
