@@ -18,6 +18,7 @@ builder
     .AddFeatureManagement();
 
 var app = builder.Build();
+app.RegisterFeatureToggleEndpoints();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
