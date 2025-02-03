@@ -10,6 +10,7 @@
     <PackageReference Include="LaunchDarkly.ClientSdk" Version="5.3.0" />
     <PackageReference Include="LaunchDarkly.ServerSdk" Version="8.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.12" />
+    <PackageReference Include="Microsoft.FeatureManagement" Version="4.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
